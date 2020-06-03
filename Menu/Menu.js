@@ -9,6 +9,9 @@ let menuItems = [
   'Log Out'
 ];
 
+
+  const header = document.querySelector('.header');
+
 /* 
   Step 1: Write a component called 'menuMaker' to create a menu like the markup below:
 
@@ -18,9 +21,42 @@ let menuItems = [
     </ul>
   </div>
 
-  The 'menuMaker' takes an array as its only argument.
+  The 'menuMaker' takes an array as its only argument.*/
 
-  Step 2: Inside the function, iterate over the array creating a list item <li> element for each item in the array. 
+  function menuMaker(items) {
+    const menu = document.createElement('div');
+    const list = document.createElement('ul');
+    const button = document.querySelector('.menu-button');
+
+    menu.classList.add('menu');
+
+    menu.appendChild(list);
+
+    function itemMaker(items) {
+      const item = document.createElement('li');
+      item.textContent = items;
+      return item;
+    }
+
+    menuItems.forEach(menuArray => {
+      const item = itemMaker(menuArray);
+      list.appendChild(item);
+    });
+
+    button.addEventListener('click', event => {
+      menu.classList.toggle('menu--open');
+    });
+    button.addEventListener('mouseout', event => {
+      menu.classList.remove('menu--open');
+    });
+
+    return menu;
+  }
+
+  const menu = menuMaker(menuItems);
+  header.appendChild(menu);
+
+ /* Step 2: Inside the function, iterate over the array creating a list item <li> element for each item in the array. 
   Add those items to the <ul>
 
   Step 3: Using a DOM selector, select the menu button (the element with a class of 'menu-button') currently on the DOM.
