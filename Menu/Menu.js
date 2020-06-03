@@ -27,6 +27,8 @@ let menuItems = [
     const menu = document.createElement('div');
     const list = document.createElement('ul');
     const button = document.querySelector('.menu-button');
+    button.style.padding = '1px';
+
 
     menu.classList.add('menu');
 
@@ -46,8 +48,14 @@ let menuItems = [
     button.addEventListener('click', event => {
       menu.classList.toggle('menu--open');
     });
+    button.addEventListener('mouseover', event => {
+      button.style.border = '1px solid white';
+      button.style.padding = '0';
+    });
     button.addEventListener('mouseout', event => {
       menu.classList.remove('menu--open');
+      button.style.border = 'none';
+      button.style.padding = '1px';
     });
 
     return menu;
